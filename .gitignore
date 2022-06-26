@@ -1,0 +1,9 @@
+wandb/
+results/
+data/
+
+__pycache__/
+*.pyc
+*.egg-info/
+.installed.cfg
+*.egg
