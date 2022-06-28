@@ -30,7 +30,7 @@ source setup.sh
 ```
 
 ## Data Preparation
-Download features from Google Drive: [env feature]() and [lang feature]().
+Download features from Google Drive: [env feature](https://drive.google.com/file/d/1uOUmOcJ11inQls5zBtgHjXMPLWMhOyIk/view?usp=sharing) and [lang feature](https://drive.google.com/file/d/1zK2NigQMyqXef9DU3Vmc8kRHwt1VciIt/view?usp=sharing).
 
 ```bash 
 mkdir data/anet; cd data/anet
