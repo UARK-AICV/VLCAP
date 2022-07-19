@@ -32,7 +32,7 @@ echo "---------------diversity"
 python densevid_eval/evaluate-diversity.py \
 -s "${filename}" \
 -r "${ref_paths[0]}" \
--v
+-v \
 -o "${filename%%.*}_rep_metrics.json"
 echo "save at ${filename%%.*}_rep_metrics.json"
 
