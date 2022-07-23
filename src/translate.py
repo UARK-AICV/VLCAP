@@ -200,7 +200,7 @@ def main():
 
         # COCO language evaluation
         lang_file = pred_file.replace(".json", "_lang.json")
-        eval_command = ["python", "para-evaluate2.py", "-s", pred_file, "-o", lang_file,
+        eval_command = ["python", "para-evaluate.py", "-s", pred_file, "-o", lang_file,
                         "-v", "-r"] + eval_references
         subprocess.call(eval_command, cwd=opt.eval_tool_dir)
 
