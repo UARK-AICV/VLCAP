@@ -1611,9 +1611,7 @@ class RecursiveTransformer(nn.Module):
         decoder_classifier_weight = self.embeddings.word_embeddings.weight \
             if self.config.share_wd_cls_weight else None
         self.decoder = BertLMPredictionHead(config, decoder_classifier_weight)
-        # self.loss_func = LabelSmoothingLoss(config.label_smoothing, config.vocab_size, ignore_index=-1)
-        self.loss_func = UnlikelihoodLoss(config.label_smoothing, config.vocab_size, ignore_index=-1) #\
-        #     if "label_smoothing" in config and config.label_smoothing > 0 else nn.CrossEntropyLoss(ignore_index=-1)
+        self.loss_func = LabelSmoothingLoss(config.label_smoothing, config.vocab_size, ignore_index=-1)
         self.clip_loss = ClipLoss()
         self.apply(self.init_bert_weights)
 
