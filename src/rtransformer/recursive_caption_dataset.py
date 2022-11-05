@@ -18,10 +18,11 @@ logging.basicConfig(level=logging.INFO, format=log_format)
 
 
 def load_c3d_env(path):
-    # feat_dict = load_json(path)
-    # feature = np.array([d["features"][0] for d in feat_dict["video_features"]]) # anet
-    # feature = np.array([d["features"] for d in feat_dict["video_features"]]) # yc2
-    feature = np.load(path)
+    if path.endswith("json"):
+        feat_dict = load_json(path)
+        feature = np.array([d["features"][0] for d in feat_dict["video_features"]]) # anet
+    else:    
+        feature = np.load(path)
     return feature
     
 

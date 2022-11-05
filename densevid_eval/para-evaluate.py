@@ -18,19 +18,15 @@ from pycocoevalcap.bleu.bleu import Bleu
 from pycocoevalcap.meteor.meteor import Meteor
 from pycocoevalcap.rouge.rouge import Rouge
 from pycocoevalcap.cider.cider import Cider
-#from pycocoevalcap.re.re import Re
-#from pycocoevalcap.self_bleu.self_bleu import Self_Bleu
 import numpy as np
 
 import re
 def parse_sent(sent):
-    res = re.sub('[^a-zA-Z]', ' ', sent)
-    res = res.strip().lower().split()
+    res = sent.strip().lower().split()
     return res
 
 def parse_para(para):
     para = para.replace('..', '.')
-    para = para.replace('.', ' endofsent')
     return parse_sent(para)
 
 class ANETcaptions(object):
@@ -78,7 +74,7 @@ class ANETcaptions(object):
         for id in submission.keys():
             para_submission[id] = ''
             for info in submission[id]:
-                para_submission[id] += info['sentence'] + '. '
+                para_submission[id] += info['sentence'] + ' '
         for para in para_submission.values():
             assert(type(para) == str)
         # Ensure that every video is limited to the correct maximum number of proposals.
@@ -90,6 +86,8 @@ class ANETcaptions(object):
         for filename in filenames:
             gt = json.load(open(filename))
             self.n_ref_vids.update(gt.keys())
+            for name, sen in gt.items():
+                gt[name] = sen.replace(".", " .")
             gts.append(self.ensure_caption_key(gt))
         if self.verbose:
             print("| Loading GT. #files: %d, #videos: %d" % (len(filenames), len(self.n_ref_vids)))

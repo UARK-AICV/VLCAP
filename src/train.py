@@ -18,8 +18,7 @@ from torch.utils.data import DataLoader
 from src.rtransformer.recursive_caption_dataset import \
     caption_collate, single_sentence_collate, prepare_batch_inputs
 from src.rtransformer.recursive_caption_dataset import RecursiveCaptionDataset as RCDataset
-from src.rtransformer.model import RecursiveTransformer, NonRecurTransformer, NonRecurTransformerUntied, TransformerXL
-from src.rtransformer.masked_transformer import MTransformer
+from src.rtransformer.model import RecursiveTransformer
 from src.rtransformer.optimization import BertAdam, EMA
 from src.translator import Translator
 from src.translate import run_translate
@@ -270,19 +269,13 @@ def eval_language_metrics(checkpoint, eval_data_loader, opt, model=None, eval_mo
     # COCO language evaluation
     eval_references = reference_files_map[eval_mode]
     lang_filepath = res_filepath.replace(".json", "_lang.json")
-    # eval_cmd = ["python", "para-evaluate.py", "-s", res_filepath, "-o", lang_filepath,
-    #             "-v", "-r"] + eval_references
-    # subprocess.call(eval_cmd, cwd=opt.eval_tool_dir)
     cwd = os.getcwd()
     os.chdir(opt.eval_tool_dir)
-    os.system(f'python para-evaluate.py -s {res_filepath} -o {lang_filepath} -v -r {eval_references}')
+    os.system(f"python para-evaluate.py -s {res_filepath} -o {lang_filepath} -v -r {' '.join(eval_references)}")
     os.chdir(cwd)
 
     # basic stats
     stat_filepath = res_filepath.replace(".json", "_stat.json")
-    # eval_stat_cmd = ["python", "get_caption_stat.py", "-s", res_filepath, "-r",  eval_references[0],
-    #                  "-o", stat_filepath, "-v"]
-    # subprocess.call(eval_stat_cmd, cwd=opt.eval_tool_dir)
     cwd = os.getcwd()
     os.chdir(opt.eval_tool_dir)
     os.system(f"python get_caption_stat.py -s {res_filepath} -o {stat_filepath} -v -r {eval_references[0]}")
@@ -290,9 +283,6 @@ def eval_language_metrics(checkpoint, eval_data_loader, opt, model=None, eval_mo
 
     # repetition evaluation
     rep_filepath = res_filepath.replace(".json", "_rep.json")
-    # eval_rep_cmd = ["python", "evaluateRepetition.py", "-s", res_filepath, "-r",  eval_references[0],
-    #                 "-o", rep_filepath]
-    # subprocess.call(eval_rep_cmd, cwd=opt.eval_tool_dir)
     cwd = os.getcwd()
     os.chdir(opt.eval_tool_dir)
     os.system(f"python evaluateRepetition.py -s {res_filepath} -o {rep_filepath} -r {eval_references[0]}")
@@ -672,23 +662,11 @@ def main():
         use_env=opt.use_env,
         use_lang=opt.use_lang,
     )
+    
+    assert opt.recurrent
     if opt.recurrent:
-        if opt.xl:
-            logger.info("Use recurrent model - TransformerXL" + " (with gradient)" if opt.xl_grad else "")
-            model = TransformerXL(rt_config)
-        else:
-            logger.info("Use recurrent model - Mine")
-            model = RecursiveTransformer(rt_config)
-    else:  # single sentence, including untied
-        if opt.untied:
-            logger.info("Use untied non-recurrent single sentence model")
-            model = NonRecurTransformerUntied(rt_config)
-        elif opt.mtrans:
-            logger.info("Use masked transformer -- another non-recurrent single sentence model")
-            model = MTransformer(rt_config)
-        else:
-            logger.info("Use non-recurrent single sentence model")
-            model = NonRecurTransformer(rt_config)
+        logger.info("Using MART")
+        model = RecursiveTransformer(rt_config)
 
     model.embeddings.set_pretrained_embedding(
         torch.from_numpy(torch.load(opt.voc_path)).float(), freeze=opt.freeze_voc

@@ -55,8 +55,8 @@ def overall_stats(data_predicted, data_gt, verbose=False):
         print('#### Overall ####')
 
     of = open(os.path.join(
-        os.path.abspath(os.path.dirname(__name__)),
-        'densevid_eval/anet_data/train.json')
+        os.path.abspath(os.path.dirname(__file__)),
+        'anet_data/train.json')
     )
 
     queries = json.load(of)
