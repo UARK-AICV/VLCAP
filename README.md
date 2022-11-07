@@ -61,7 +61,7 @@ The generated captions are saved at `results/anet_re_*/greedy_pred_val.json`
 
 2. Evaluate generated captions
 ```
-bash scripts/eval.sh anet [val/test] results/anet_re_*/greedy_pred_val.json
+bash scripts/eval.sh anet [val/test] results/anet_re_*/greedy_pred_[val/test].json
 ```
 The results should be comparable with the results we present at Table 5 of the paper. 
 
