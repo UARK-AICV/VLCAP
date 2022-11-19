@@ -69,21 +69,24 @@ The results should be comparable with the results we present at Table 5 of the p
 If you find this code useful for your research, please cite our paper:
 
 ```bibtex
-@ARTICLE{kashu2022,
-       author = {{Yamazaki}, Kashu and {Truong}, Sang and {Vo}, Khoa and {Kidd}, Michael and {Rainwater}, Chase and {Luu}, Khoa and {Le}, Ngan},
-        title = "{VLCap: Vision-Language with Contrastive Learning for Coherent Video Paragraph Captioning}",
-      journal = {arXiv e-prints},
-     keywords = {Computer Science - Computer Vision and Pattern Recognition},
-         year = 2022,
-        month = jun,
-          eid = {arXiv:2206.12972},
-        pages = {arXiv:2206.12972},
-archivePrefix = {arXiv},
-       eprint = {2206.12972},
- primaryClass = {cs.CV},
-       adsurl = {https://ui.adsabs.harvard.edu/abs/2022arXiv220612972Y},
-      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
-}
+@INPROCEEDINGS{9897766,
+
+  author={Yamazaki, Kashu and Truong, Sang and Vo, Khoa and Kidd, Michael and Rainwater, Chase and Luu, Khoa and Le, Ngan},
+
+  booktitle={2022 IEEE International Conference on Image Processing (ICIP)}, 
+
+  title={VLCAP: Vision-Language with Contrastive Learning for Coherent Video Paragraph Captioning}, 
+
+  year={2022},
+
+  volume={},
+
+  number={},
+
+  pages={3656-3661},
+
+  doi={10.1109/ICIP46576.2022.9897766}}
+
 ```
 
 ## Acknowledgement
