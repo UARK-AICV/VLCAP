@@ -70,21 +70,13 @@ If you find this code useful for your research, please cite our paper:
 
 ```bibtex
 @INPROCEEDINGS{9897766,
-
   author={Yamazaki, Kashu and Truong, Sang and Vo, Khoa and Kidd, Michael and Rainwater, Chase and Luu, Khoa and Le, Ngan},
-
   booktitle={2022 IEEE International Conference on Image Processing (ICIP)}, 
-
   title={VLCAP: Vision-Language with Contrastive Learning for Coherent Video Paragraph Captioning}, 
-
   year={2022},
-
   volume={},
-
   number={},
-
   pages={3656-3661},
-
   doi={10.1109/ICIP46576.2022.9897766}}
 
 ```
