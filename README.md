@@ -66,7 +66,7 @@ bash scripts/eval.sh anet [val/test] results/anet_re_*/greedy_pred_[val/test].js
 The results should be comparable with the results we present at Table 5 of the paper. 
 
 ## Citations
-If you find this code useful for your research, please cite our paper:
+If you find this code useful for your research, please cite our papers:
 
 ```bibtex
 @INPROCEEDINGS{9897766,
@@ -79,6 +79,25 @@ If you find this code useful for your research, please cite our paper:
   pages={3656-3661},
   doi={10.1109/ICIP46576.2022.9897766}}
 
+```
+
+
+```bibtex
+@ARTICLE{2022arXiv221115103Y,
+       author = {{Yamazaki}, Kashu and {Vo}, Khoa and {Truong}, Sang and {Raj}, Bhiksha and {Le}, Ngan},
+        title = "{VLTinT: Visual-Linguistic Transformer-in-Transformer for Coherent Video Paragraph Captioning}",
+      journal = {arXiv e-prints},
+     keywords = {Computer Science - Computer Vision and Pattern Recognition},
+         year = 2022,
+        month = nov,
+          eid = {arXiv:2211.15103},
+        pages = {arXiv:2211.15103},
+archivePrefix = {arXiv},
+       eprint = {2211.15103},
+ primaryClass = {cs.CV},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2022arXiv221115103Y},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
 ```
 
 ## Acknowledgement
