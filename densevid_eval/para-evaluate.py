@@ -84,7 +84,16 @@ class ANETcaptions(object):
         gts = []
         self.n_ref_vids = set()
         for filename in filenames:
-            gt = json.load(open(filename))
+            try:
+                gt = json.load(open(filename))
+            except:
+                try:
+                    gt = json.load(open(filename[:-1]))
+                except:
+                    try:
+                        gt = json.load(open(filename[1:-1]))
+                    except:
+                        gt = json.load(open(filename[1:]))
             self.n_ref_vids.update(gt.keys())
             for name, sen in gt.items():
                 gt[name] = sen.replace(".", " .")
